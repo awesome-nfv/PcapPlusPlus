@@ -26,7 +26,7 @@ before_script:
   - if [[ "$DPDK_VER" == "16.11.1" ]]; then Deploy/build-dpdk.sh; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./configure-mac_os_x.sh      ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./configure-linux.sh --default; fi
-  - if [[ "$DPDK_VER" == "16.11.1" ]]; then ./configure-linux.sh --dpdk --dpdk-home dpdk-stable-16.11.1; fi
+  - if [[ "$DPDK_VER" == "16.11.1" ]]; then ./configure-linux.sh --dpdk --dpdk-home /home/travis/build/seladb/PcapPlusPlus/dpdk-stable-16.11.1; fi
   - make all
   
 script:

@@ -9,16 +9,19 @@ matrix:
     - os: linux
       compiler: gcc
       dist: trusty
+    - os: linux
+      compiler: gcc
+      dist: trusty
+      env: DPDK_VER=16.11.1      
 
 addons:
   apt:
     packages:
     - libpcap-dev
     - net-tools
-    - libncurses-dev
-    - linux-headers-3.13.0-40-generic
 
 before_script:
+  - if [[ "$DPDK_VER" == "16.11.1" ]]; then Deploy/build-dpdk.sh; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./configure-mac_os_x.sh      ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./configure-linux.sh --default; fi
   - make all

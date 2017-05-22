@@ -12,13 +12,14 @@ matrix:
     - os: linux
       compiler: gcc
       dist: trusty
-      env: DPDK_VER=16.11.1      
+      env: DPDK_VER=16.11.1
 
 addons:
   apt:
     packages:
     - libpcap-dev
     - net-tools
+    - linux-headers-4.4.0-51-generic
 
 before_script:
   - if [[ "$DPDK_VER" == "16.11.1" ]]; then chmod +x Deploy/build-dpdk.sh; fi

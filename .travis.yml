@@ -21,7 +21,7 @@ addons:
     - net-tools
 
 before_script:
-  - if [[ "$DPDK_VER" == "16.11.1" ]]; then Deploy/build-dpdk.sh; fi
+  - if [[ "$DPDK_VER" == "16.11.1" ]]; then chmod +x Deploy/build-dpdk.sh & Deploy/build-dpdk.sh; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./configure-mac_os_x.sh      ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./configure-linux.sh --default; fi
   - make all

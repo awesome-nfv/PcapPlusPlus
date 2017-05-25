@@ -13,6 +13,12 @@ matrix:
       compiler: gcc
       dist: trusty
       env: DPDK_VER=16.11.1
+      env: DPDK_DIR=dpdk-stable-16.11.1
+    - os: linux
+      compiler: gcc
+      dist: trusty
+      env: DPDK_VER=17.02
+      env: DPDK_DIR=dpdk-17.02
 
 addons:
   apt:
@@ -23,11 +29,11 @@ addons:
 
 before_script:
   - ifconfig
-  - if [[ "$DPDK_VER" == "16.11.1" ]]; then chmod +x Deploy/build-dpdk.sh; fi
-  - if [[ "$DPDK_VER" == "16.11.1" ]]; then Deploy/build-dpdk.sh; fi
+  - if [[ ! -z $DPDK_VER ]]; then chmod +x Deploy/build-dpdk.sh; fi
+  - if [[ ! -z $DPDK_VER ]]; then Deploy/build-dpdk.sh $DPDK_VER $DPDK_DIR; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./configure-mac_os_x.sh      ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./configure-linux.sh --default; fi
-  - if [[ "$DPDK_VER" == "16.11.1" ]]; then ./configure-linux.sh --dpdk --dpdk-home /home/travis/build/seladb/PcapPlusPlus/dpdk-stable-16.11.1; fi
+  - if [[ ! -z $DPDK_VER  ]]; then ./configure-linux.sh --dpdk --dpdk-home /home/travis/build/seladb/PcapPlusPlus/$DPDK_DIR; fi
   - make all
   
 script:

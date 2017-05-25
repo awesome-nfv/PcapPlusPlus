@@ -12,13 +12,15 @@ matrix:
     - os: linux
       compiler: gcc
       dist: trusty
-      env: DPDK_VER=16.11.1
-      env: DPDK_DIR=dpdk-stable-16.11.1
+      env: 
+        - DPDK_VER=16.11.1
+        - DPDK_DIR=dpdk-stable-16.11.1
     - os: linux
       compiler: gcc
       dist: trusty
-      env: DPDK_VER=17.02
-      env: DPDK_DIR=dpdk-17.02
+      env: 
+        - DPDK_VER=17.02
+        - DPDK_DIR=dpdk-17.02
 
 addons:
   apt:

@@ -27,7 +27,6 @@ addons:
     packages:
     - libpcap-dev
     - net-tools
-    - linux-headers-4.4.0-51-generic
 
 before_script:
   - ifconfig

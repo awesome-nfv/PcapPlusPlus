@@ -29,10 +29,9 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./configure-linux.sh --default; fi
   - if [[ "$DPDK_VER" == "16.11.1" ]]; then ./configure-linux.sh --dpdk --dpdk-home /home/travis/build/seladb/PcapPlusPlus/dpdk-stable-16.11.1; fi
   - make all
-  - if [[ "$DPDK_VER" == "16.11.1" ]]; then ./setup-dpdk.sh -p 256 -n eth0; fi
   
 script:
   - cd Tests/Packet++Test
   - Bin/Packet++Test
   - cd ../Pcap++Test
-  - sudo Bin/Pcap++Test -n
+  - sudo Bin/Pcap++Test -n -k 0

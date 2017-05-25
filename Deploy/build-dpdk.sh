@@ -1,3 +1,4 @@
+sudo apt-get install linux-headers-4.4.0-51-generic
 wget http://fast.dpdk.org/rel/dpdk-$1.tar.gz
 tar xvzf dpdk-$1.tar.gz
 cd $2

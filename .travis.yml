@@ -34,10 +34,9 @@ before_script:
   - pwd
   - pwd
   - if [[ ! -z $DPDK_VER ]]; then chmod +x Deploy/build-dpdk.sh; fi
-  - if [[ ! -z $DPDK_VER ]]; then Deploy/build-dpdk.sh $DPDK_VER $DPDK_DIR; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./configure-mac_os_x.sh      ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./configure-linux.sh --default; fi
-  - if [[ ! -z $DPDK_VER  ]]; then ./configure-linux.sh --dpdk --dpdk-home /home/travis/build/seladb/PcapPlusPlus/$DPDK_DIR; fi
+  - if [[ ! -z $DPDK_VER  ]]; then Deploy/build-dpdk.sh $DPDK_VER $DPDK_DIR && ./configure-linux.sh --dpdk --dpdk-home /home/travis/build/seladb/PcapPlusPlus/$DPDK_DIR; fi
   - make all
   
 script:
